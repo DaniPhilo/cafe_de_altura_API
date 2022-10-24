@@ -1,0 +1,29 @@
+{
+  "name": "cafe_de_altura_api",
+  "version": "1.0.0",
+  "description": "API for Cafe de Altura, a coffee ecommerce design and developed by GammaTech School",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DaniPhilo/cafe_de_altura_API.git"
+  },
+  "author": "Daniel Carrasco Casado",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DaniPhilo/cafe_de_altura_API/issues"
+  },
+  "homepage": "https://github.com/DaniPhilo/cafe_de_altura_API#readme",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "mongoose": "^6.6.7"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}
