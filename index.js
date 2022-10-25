@@ -8,9 +8,7 @@ const getAllProducts = require('./controllers/products_controllers');
 
 const PORT = process.env.PORT || 3001;
 
-app.use(cors({
-    origin: "http://127.0.0.1:5500"
-}));
+app.use(cors());
 
 app.get('/', (req, res) => {
     res.send({ response: 200, title: "Hello World!" });
