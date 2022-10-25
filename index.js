@@ -4,17 +4,15 @@ require('dotenv').config();
 const cors = require('cors');
 
 const DBConnect = require('./config/mongoDB');
-const getAllProducts = require('./controllers/products_controllers');
+const { getConnection, getAllProducts, getAvailableProducts } = require('./controllers/products_controllers');
 
 const PORT = process.env.PORT || 3001;
 
 app.use(cors());
 
-app.get('/', (req, res) => {
-    res.send({ response: 200, title: "Hello World!" });
-});
-
+app.get('/', getConnection);
 app.get('/products', getAllProducts);
+app.get('/available', getAvailableProducts);
 
 const appInit = async () => {
     try {
