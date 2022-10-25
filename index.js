@@ -1,11 +1,16 @@
 const express = require('express');
 const app = express();
 require('dotenv').config();
+const cors = require('cors');
 
 const DBConnect = require('./config/mongoDB');
 const getAllProducts = require('./controllers/products_controllers');
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
+
+app.use(cors({
+    origin: "http://127.0.0.1:5500"
+}));
 
 app.get('/', (req, res) => {
     res.send({ response: 200, title: "Hello World!" });
