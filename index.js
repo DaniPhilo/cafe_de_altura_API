@@ -3,6 +3,7 @@ const app = express();
 require('dotenv').config();
 
 const DBConnect = require('./config/mongoDB');
+const getAllProducts = require('./controllers/products_controllers');
 
 const PORT = process.env.PORT || 3000;
 
@@ -10,9 +11,7 @@ app.get('/', (req, res) => {
     res.send({ response: 200, title: "Hello World!" });
 });
 
-app.get('/products', (req, res) => {
-    res.send('Products');
-});
+app.get('/products', getAllProducts);
 
 const appInit = async () => {
     try {
