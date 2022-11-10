@@ -1,18 +1,18 @@
 const express = require('express');
 const app = express();
-require('dotenv').config();
 const cors = require('cors');
+require('dotenv').config();
 
 const DBConnect = require('./config/mongoDB');
-const { getConnection, getAllProducts, getAvailableProducts } = require('./controllers/products_controllers');
+const router = require("./routes/routes");
 
 const PORT = process.env.PORT || 3001;
 
 app.use(cors());
+app.use(express.json());
+// app.use(express.urlencoded());
 
-app.get('/', getConnection);
-app.get('/products', getAllProducts);
-app.get('/available', getAvailableProducts);
+app.use('/api/products', router);
 
 const appInit = async () => {
     try {
