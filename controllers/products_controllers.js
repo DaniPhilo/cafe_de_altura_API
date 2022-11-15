@@ -56,7 +56,7 @@ const putProduct = async (req, res) => {
 
 const deleteProduct = async (req, res) => {
     try {
-        const filter = req.body.id;
+        const filter = req.body;
         const product = await Product.findOneAndDelete(filter);
         res.send({ response: 200, product: product });
     } catch (error) {

@@ -8,7 +8,6 @@ const router = require("./routes/routes");
 
 const swaggerUI = require("swagger-ui-express");
 const specs = require("./swagger/swagger_config");
-console.log(specs);
 
 const PORT = process.env.PORT || 3001;
 
