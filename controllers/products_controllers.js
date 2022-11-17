@@ -1,6 +1,8 @@
 const Product = require('../models/products');
 const Products = require('../models/products');
 
+const coffeeJson = require("../config/coffee_data.json");
+
 const getConnection = (req, res) => {
     res.send({ response: 200, message: "Connection successfully stablished. Use route '/products' to get all products, or route '/available' to get just available products." })
 }
@@ -57,8 +59,23 @@ const putProduct = async (req, res) => {
 const deleteProduct = async (req, res) => {
     try {
         const filter = req.body;
+        console.log(`$Filter in req.body: {filter}`);
         const product = await Product.findOneAndDelete(filter);
+        console.log(`Product returned by MongoDB: ${product}`);
         res.send({ response: 200, product: product });
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+const populateDataBase = async (req, res) => {
+    console.log('In function');
+    try {
+        coffeeJson.forEach(async (coffee) => {
+            console.log(coffee);
+            await Product.create(coffee);
+        });
+        res.send({ response: 201, message: "Database populated" });
     } catch (error) {
         console.log(error);
     }
@@ -71,5 +88,6 @@ module.exports = {
     getAvailableProducts,
     postCreateProduct,
     putProduct,
-    deleteProduct
+    deleteProduct,
+    populateDataBase
 };
