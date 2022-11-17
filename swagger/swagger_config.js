@@ -10,7 +10,8 @@ const options = {
         },
         servers: [
             {
-                url: "https://cafe-de-altura-mvsuttl4p-daniphilo.vercel.app/api/products"
+                url: `${process.env.DEPLOYMENT_URL}/api/products`
+                // url: `${process.env.LOCAL_URL}/api/products`
             }
         ]
     },
