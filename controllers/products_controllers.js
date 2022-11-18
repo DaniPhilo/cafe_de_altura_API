@@ -59,9 +59,7 @@ const putProduct = async (req, res) => {
 const deleteProduct = async (req, res) => {
     try {
         const filter = req.body;
-        console.log(`$Filter in req.body: {filter}`);
         const product = await Product.findOneAndDelete(filter);
-        console.log(`Product returned by MongoDB: ${product}`);
         res.send({ response: 200, product: product });
     } catch (error) {
         console.log(error);
@@ -70,9 +68,8 @@ const deleteProduct = async (req, res) => {
 
 const populateDataBase = async (req, res) => {
     try {
-        coffeeJson.forEach(async (coffee) => {
-            await Product.create(coffee);
-        });
+        await Product.deleteMany({});
+        await Product.insertMany(coffeeJson);
         res.send({ response: 201, message: "Database populated" });
     } catch (error) {
         console.log(error);
