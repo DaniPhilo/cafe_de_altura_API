@@ -14,7 +14,7 @@
  *           type: string
  *           description: The name of the coffee brand
  *         price:
- *           type: string
+ *           type: integer
  *           description: The price of the coffee
  *         img_url:
  *           type: string
@@ -36,7 +36,7 @@
  * @swagger
  * tags:
  *   name: Products
- *   description: The API for coffee products
+ *   description: The API of coffee products
  */
 
 /**
@@ -47,13 +47,22 @@
  *     tags: [Products]
  *     responses:
  *       200:
- *         description: A list of all coffee products
+ *         description: OK
  *         content:
  *           application/json:
  *             schema:
- *               type: array
- *               items:
- *                 $ref: '#/components/schemas/Coffee'
+ *               type: object
+ *               properties:
+ *                 response: 
+ *                   type: integer
+ *                   description: Response code
+ *                   example: 200
+ *                 message:
+ *                   type: array
+ *                   description: List of coffees
+ *                   items:
+ *                     $ref: '#/components/schemas/Coffee'
+ *               
  */
 
 /**
@@ -71,13 +80,42 @@
  *         description: Coffee brand
  *     responses:
  *       200:
- *         description: The coffee chosen by brand name
+ *         description: OK
  *         content:
  *           application/json:
  *             schema:
- *               type: array
- *               items:
- *                 $ref: '#/components/schemas/Coffee'
+ *               type: object
+ *               properties:
+ *                 response: 
+ *                   type: integer
+ *                   description: Response code
+ *                   example: 200
+ *                 products:
+ *                   description: The requested coffee 
+ *                   $ref: '#/components/schemas/Coffee'
+ */
+
+ /**
+ * @swagger
+ * /populate:
+ *   get:
+ *     summary: Restores original database documents
+ *     tags: [Products]
+ *     responses:
+ *       200:
+ *         description: OK
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 response: 
+ *                   type: integer
+ *                   description: Response code
+ *                   example: 200
+ *                 message:
+ *                   type: string
+ *                   description: Success message
  */
 
 /**
@@ -95,13 +133,19 @@
  *             $ref: '#/components/schemas/Coffee'
  *     responses:
  *       201:
- *         description: Creates a new coffee product with the parameters provided by the user
+ *         description: Created
  *         content:
  *           application/json:
  *             schema:
- *               type: array
- *               items:
- *                 $ref: '#/components/schemas/Coffee'
+ *               type: object
+ *               properties:
+ *                 response: 
+ *                   type: integer
+ *                   description: Response code
+ *                   example: 201
+ *                 products:
+ *                   description: The created coffee
+ *                   $ref: '#/components/schemas/Coffee'
  */
 
  /**
@@ -119,11 +163,17 @@
  *             $ref: '#/components/schemas/Id'
  *     responses:
  *       200:
- *         description: Creates a new coffee product with the parameters provided by the user
+ *         description: OK
  *         content:
  *           application/json:
  *             schema:
- *               type: array
- *               items:
- *                 $ref: '#/components/schemas/Coffee'
+ *               type: object
+ *               properties:
+ *                 response: 
+ *                   type: integer
+ *                   description: Response code
+ *                   example: 200
+ *                 products:
+ *                   description: The created coffee
+ *                   $ref: '#/components/schemas/Coffee'
  */
