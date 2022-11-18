@@ -25,9 +25,9 @@
  *     Id:
  *       type: object
  *       required:
- *         - id
+ *         - _id
  *       properties:
- *         id:
+ *         _id:
  *           type: string
  *           description: String with the MongoDB _id
  */
