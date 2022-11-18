@@ -69,10 +69,8 @@ const deleteProduct = async (req, res) => {
 }
 
 const populateDataBase = async (req, res) => {
-    console.log('In function');
     try {
         coffeeJson.forEach(async (coffee) => {
-            console.log(coffee);
             await Product.create(coffee);
         });
         res.send({ response: 201, message: "Database populated" });
