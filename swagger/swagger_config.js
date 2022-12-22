@@ -10,8 +10,7 @@ const options = {
         },
         servers: [
             {
-                url: `${process.env.DEPLOYMENT_URL}/api/products`
-                // url: `${process.env.LOCAL_URL}/api/products`
+                url: `https://cafe-de-altura-api.vercel.app/api/products`
             }
         ]
     },
