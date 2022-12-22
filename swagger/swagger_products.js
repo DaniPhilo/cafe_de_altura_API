@@ -30,6 +30,33 @@
  *         _id:
  *           type: string
  *           description: String with the MongoDB _id
+ *     UpdateCoffee:
+ *       type: object
+ *       required:
+ *         - id
+ *         - data
+ *       properties:
+ *         id:
+ *           type: object
+ *           properties:
+ *             _id:
+ *               type: string
+ *               description: String with the MongoDB _id
+ *         data:
+ *           type: object
+ *           properties:
+ *             brand: 
+ *               type: string
+ *               description: The name of the coffee brand
+ *             price:
+ *               type: integer
+ *               description: The price of the coffee
+ *             img_url:
+ *               type: string
+ *               description: Url address of coffee's image
+ *             available:
+ *               type: boolean
+ *               description: Wether that coffee is available or not
  */
 
 /**
@@ -145,6 +172,36 @@
  *                   example: 201
  *                 products:
  *                   description: The created coffee
+ *                   $ref: '#/components/schemas/Coffee'
+ */
+
+/**
+ * @swagger
+ * /update:
+ *   put:
+ *     summary: Updates a coffee
+ *     tags: [Products]
+ *     requestBody:
+ *       description: Brand, price, img url and availability of the new product
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema: 
+ *             $ref: '#/components/schemas/UpdateCoffee'
+ *     responses:
+ *       200:
+ *         description: OK
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 response: 
+ *                   type: integer
+ *                   description: Response code
+ *                   example: 200
+ *                 products:
+ *                   description: The updated coffee
  *                   $ref: '#/components/schemas/Coffee'
  */
 
