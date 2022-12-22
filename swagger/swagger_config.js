@@ -10,7 +10,7 @@ const options = {
         },
         servers: [
             {
-                url: `https://cafe-de-altura-api.vercel.app/api/products`
+                url: `https://cafe-de-altura-api.vercel.app/api`
             }
         ]
     },
