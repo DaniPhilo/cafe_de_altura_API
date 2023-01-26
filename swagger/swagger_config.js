@@ -15,7 +15,9 @@ const options = {
             }
         ]
     },
-    apis: ["./swagger/swagger_products.js"]
+    apis: ["./swagger/swagger_products.js"],
+    customCssUrl: '/public/swagger-ui.css', 
+    customSiteTitle: "The Words That I Know API - Swagger"
 }
 
 const specs = swaggerJsDoc(options);
