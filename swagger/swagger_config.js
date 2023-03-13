@@ -13,7 +13,7 @@ const options = {
                 url: `https://cafe-de-altura-api.vercel.app/api/products`,
                 // url: "http://localhost:3001/api/products"
             }
-        ]
+        ],
     },
     apis: ["./swagger/swagger_products.js"],
     customCssUrl: '/public/swagger-ui.css', 
