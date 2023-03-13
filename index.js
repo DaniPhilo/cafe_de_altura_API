@@ -3,11 +3,12 @@ const app = express();
 const cors = require('cors');
 require('dotenv').config();
 
-const DBConnect = require('./config/mongoDB');
-const router = require("./routes/routes");
 
 const swaggerUI = require("swagger-ui-express");
 const specs = require("./swagger/swagger_config");
+
+const DBConnect = require('./config/mongoDB');
+const router = require("./routes/routes");
 
 const { CustomError } = require('./errors/errors');
 
