@@ -5,8 +5,6 @@ const router = express.Router();
 const { getConnection, getAllProducts, getProductByName, getProductById, getProductsByQuery, getAvailableProducts, postCreateProduct, putProduct, deleteProduct, populateDataBase } = require('../controllers/products_controllers.js');
 
 router.get('/', getAllProducts);
-// router.get('/coffee/:brand', getProductByName);
-// router.get("/coffee/:id", getProductById);
 router.get("/coffee", getProductsByQuery);
 router.post('/create', postCreateProduct);
 router.put('/update', putProduct);
