@@ -2,11 +2,11 @@ const express = require('express');
 const router = express.Router();
 
 
-const { getProducts, postCreateProduct, putProduct, deleteProduct, populateDataBase } = require('../controllers/products_controllers.js');
+const { getProducts, createProduct, updateProduct, deleteProduct, populateDataBase } = require('../controllers/products_controllers.js');
 
 router.get('/', getProducts);
-router.post('/create', postCreateProduct);
-router.put('/update', putProduct);
+router.post('/create', createProduct);
+router.put('/update', updateProduct);
 router.delete('/delete', deleteProduct);
 
 // Route to populate database

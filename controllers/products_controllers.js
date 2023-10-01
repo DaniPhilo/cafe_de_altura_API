@@ -9,7 +9,7 @@ const getProducts = async (req, res, next) => {
     try {
         const { id, brand } = req.query;
         if (!id && !brand) {
-            const products = await Products.find({});
+            const products = await Product.find({});
             return res.status(200).send({ response: 200, products: products });
         } else {
             const products = await getProductsByQuery(id, brand);
@@ -37,7 +37,7 @@ const getProductsByQuery = async (id, brand) => {
 
 const getAvailableProducts = async (req, res) => {
     try {
-        const products = await Products.find({ "available": true });
+        const products = await Product.find({ "available": true });
         res.send({ response: 200, products: products });
     } catch (error) {
         const customError = new CustomError(500, "Something went wrong. Please, try later.")
@@ -45,7 +45,7 @@ const getAvailableProducts = async (req, res) => {
     }
 }
 
-const postCreateProduct = async (req, res, next) => {
+const createProduct = async (req, res, next) => {
     try {
         const data = req.body;
         const validation = validateProductBody(data);
@@ -53,7 +53,7 @@ const postCreateProduct = async (req, res, next) => {
             const error = new CustomError(400, `Invalid ${validation.errors.join(", ")}`);
             return next(error)
         }
-        const product = await Products.create(data);
+        const product = await Product.create(data);
         return res.status(201).send({ response: 201, product: product });
     } catch (error) {
         const customError = new CustomError(500, "Something went wrong. Please, try later.")
@@ -61,7 +61,7 @@ const postCreateProduct = async (req, res, next) => {
     }
 }
 
-const putProduct = async (req, res, next) => {
+const updateProduct = async (req, res, next) => {
     try {
         const filter = req.body.id;
         const data = req.body.data;
@@ -107,8 +107,8 @@ const populateDataBase = async (req, res) => {
 module.exports = {
     getProducts,
     getAvailableProducts,
-    postCreateProduct,
-    putProduct,
+    createProduct,
+    updateProduct,
     deleteProduct,
     populateDataBase
 };
