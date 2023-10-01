@@ -14,11 +14,6 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Swagger docs
-const swaggerUI = require("swagger-ui-express");
-const specs = require("./swagger/swagger_config");
-app.use('/api/docs', swaggerUI.serve, swaggerUI.setup(specs));
-
 // Main routes
 const router = require("./routes/routes");
 app.use('/api/coffees', router);
