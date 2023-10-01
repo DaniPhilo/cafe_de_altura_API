@@ -21,7 +21,7 @@ app.use('/api/docs', swaggerUI.serve, swaggerUI.setup(specs));
 
 // Main routes
 const router = require("./routes/routes");
-app.use('/api/products', router);
+app.use('/api/coffees', router);
 
 //Error handlers
 app.use((error, req, res, next) => {

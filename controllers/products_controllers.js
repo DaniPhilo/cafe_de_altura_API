@@ -1,49 +1,37 @@
 const Product = require('../models/products');
-const Products = require('../models/products');
 const { CustomError } = require('../errors/errors.js');
 
 const coffeeJson = require("../config/coffee_data.json");
 
 const { getProductsByName, getProductById, validateProductBody } = require('../utils/product_utils.js');
 
-const getConnection = (req, res) => {
-    res.send({ response: 200, message: "Connection successfully stablished. Use route '/products' to get all products, or route '/available' to get just available products." })
-}
-
-const getAllProducts = async (req, res) => {
+const getProducts = async (req, res, next) => {
     try {
-        const products = await Products.find({});
-        return res.status(200).send({ response: 200, products: products });
+        const { id, brand } = req.query;
+        if (!id && !brand) {
+            const products = await Products.find({});
+            return res.status(200).send({ response: 200, products: products });
+        } else {
+            const products = await getProductsByQuery(id, brand);
+            if (products instanceof CustomError) {
+                return next(products)
+            }
+            return res.status(200).send({ response: 200, products: products });
+        }
     } catch (error) {
         const customError = new CustomError(500, "Something went wrong. Please, try later.")
         return next(customError)
     }
 }
 
-const getProductsByQuery = async (req, res, next) => {
-    try {
-        const { id, brand } = req.query;
-        if (id) {
-            const product = await getProductById(id);
-            if (product instanceof CustomError) {
-                return next(product)
-            }
-            return res.status(200).send({ response: 200, products: product })
-        }
-        if (brand) {
-            const products = await getProductsByName(brand);
-            if (products instanceof CustomError) {
-                return next(products)
-            }
-            return res.status(200).send({ response: 200, products: products });
-        }
-        else {
-            const customError = new CustomError(400, "Invalid parameters");
-            return next(customError)
-        }
-    } catch (error) {
-        const customError = new CustomError(400, "Invalid parameters");
-        return next(customError)
+const getProductsByQuery = async (id, brand) => {
+    if (id) {
+        const product = await getProductById(id);
+        return product
+    }
+    if (brand) {
+        const products = await getProductsByName(brand);
+        return products
     }
 }
 
@@ -117,9 +105,7 @@ const populateDataBase = async (req, res) => {
 }
 
 module.exports = {
-    getConnection,
-    getAllProducts,
-    getProductsByQuery,
+    getProducts,
     getAvailableProducts,
     postCreateProduct,
     putProduct,
